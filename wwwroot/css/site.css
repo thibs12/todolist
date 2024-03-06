@@ -1,0 +1,65 @@
+/* Cursor styles */
+input[type='submit'],
+button,
+[aria-label] {
+    cursor: pointer;
+}
+
+/* Hide edit form initially */
+#editForm {
+    display: none;
+}
+
+/* Table styles */
+table {
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background-color: #8a2be2; /* Violet color */
+    color: white; /* Text color */
+    padding: 15px; /* Increase padding for better readability and touch targets */
+    text-align: left;
+}
+
+td {
+    border: 1px solid #8a2be2; /* Violet border */
+    padding: 15px; /* Increase padding for better readability and touch targets */
+}
+
+/* Form styles */
+input[type='text'],
+input[type='submit'] {
+    padding: 12px; /* Slightly increase padding for better touch targets */
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: calc(100% - 24px); /* Adjust width to include padding */
+}
+
+input[type='submit'] {
+    background-color: #8a2be2; /* Violet color */
+    color: white; /* Text color */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Add transition for smoother hover effect */
+}
+
+input[type='submit']:hover {
+    background-color: #6a1c9a; /* Darker violet on hover */
+}
+
+/* Button styles */
+button {
+    background-color: #8a2be2; /* Violet color */
+    color: white; /* Text color */
+    border: none;
+    border-radius: 5px;
+    padding: 12px 24px; /* Slightly increase padding for better touch targets */
+    transition: background-color 0.3s; /* Add transition for smoother hover effect */
+}
+
+button:hover {
+    background-color: #6a1c9a; /* Darker violet on hover */
+}
