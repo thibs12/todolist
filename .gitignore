@@ -16,3 +16,5 @@ bld/
 
 # VS code
 .vscode/
+.vs/
+TodoApi.csproj.user
