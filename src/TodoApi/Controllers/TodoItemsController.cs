@@ -19,7 +19,8 @@ public class TodoItemsController : ControllerBase
     public async Task<ActionResult<IEnumerable<TodoItemDTO>>> GetTodoItems()
     {
         var res = await _todoItermService.GetTodoItems();
-        return Ok(res);
+
+        return new ActionResult<IEnumerable<TodoItemDTO>>(res);
     }
 
     // GET: api/TodoItems/5
