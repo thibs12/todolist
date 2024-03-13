@@ -6,11 +6,11 @@ using TodoApi.Services;
 
 namespace TodoApi.UnitTests.Controllers
 {
-    public class TodoItemsControllerTest
+    public class TodoItemsControllerUnitTest
     {
         private Mock<ITodoItemService> _todoItemService;
 
-        public TodoItemsControllerTest()
+        public TodoItemsControllerUnitTest()
         {
             _todoItemService = new Mock<ITodoItemService>();
         }
