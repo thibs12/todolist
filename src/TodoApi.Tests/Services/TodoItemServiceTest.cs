@@ -1,8 +1,8 @@
 ﻿using TodoApi.Models;
 using TodoApi.Services;
-using TodoApi.Tests.MockDbContext;
+using TodoApi.UnitTests.MockDbContext;
 
-namespace TodoApi.Tests.Services
+namespace TodoApi.UnitTests.Services
 {
     public class TodoItemServiceTest
     {

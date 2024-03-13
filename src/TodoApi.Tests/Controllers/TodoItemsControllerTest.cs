@@ -4,7 +4,7 @@ using TodoApi.Controllers;
 using TodoApi.Models;
 using TodoApi.Services;
 
-namespace TodoApi.Tests.Controllers
+namespace TodoApi.UnitTests.Controllers
 {
     public class TodoItemsControllerTest
     {

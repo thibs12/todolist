@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
 
-namespace TodoApi.Tests.MockDbContext
+namespace TodoApi.UnitTests.MockDbContext
 {
     public class MockDbContextFactory
     {
