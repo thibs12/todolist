@@ -23,6 +23,6 @@ jobs:
     - name: Build
       run: dotnet build src/TodoApi/TodoApi.sln
     - name: Test
-      run: 
+      run: |
         dotnet test TodoApi.UnitTests/TodoApi.UnitTests.csproj
         dotnet test TodoApi.IntegrationTests/TodoApi.IntegrationTests.csproj
