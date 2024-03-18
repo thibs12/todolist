@@ -30,7 +30,7 @@ namespace TodoApi.Services
 
             return ItemToDTO(todoItem);
         }
-        
+
         public async Task<TodoItemDTO> CreateTodoItem(TodoItemDTO todoItemDTO)
         {
             var todoItem = new TodoItem

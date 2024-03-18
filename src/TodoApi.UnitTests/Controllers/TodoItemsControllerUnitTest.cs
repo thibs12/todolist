@@ -60,7 +60,7 @@ namespace TodoApi.UnitTests.Controllers
             // Assert
             var createdActionResult = Assert.IsType<ActionResult<TodoItemDTO>>(result);
             var itemFromDb = Assert.IsType<TodoItemDTO>(createdActionResult.Value);
-            Assert.NotNull(itemFromDb); 
+            Assert.NotNull(itemFromDb);
             Assert.Equal(returnItem.Name, itemFromDb.Name);
             Assert.Equal(returnItem.IsComplete, itemFromDb.IsComplete);
             Assert.Equal(returnItem.Id, itemFromDb.Id);
@@ -113,7 +113,7 @@ namespace TodoApi.UnitTests.Controllers
             Assert.Equal(returnItem.IsComplete, itemAdded.IsComplete);
             Assert.Equal(returnItem.Id, itemAdded.Id);
         }
-        
+
         [Fact]
         public async void Edit_TodoItem_Success()
         {

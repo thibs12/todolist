@@ -72,10 +72,10 @@ namespace TodoApi.UnitTests.Services
             var context = contextFactory.DbContextFactory();
             var service = new TodoItemService(context);
             var item = new TodoItemDTO
-            { 
-                Name = "ItemAdded", 
-                IsComplete = false 
-            }; 
+            {
+                Name = "ItemAdded",
+                IsComplete = false
+            };
 
             // Act
             var result = await service.CreateTodoItem(item);
