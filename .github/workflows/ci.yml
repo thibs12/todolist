@@ -26,3 +26,15 @@ jobs:
       run: |
         dotnet test src/TodoApi.UnitTests/TodoApi.UnitTests.csproj
         dotnet test src/TodoApi.IntegrationTests/TodoApi.IntegrationTests.csproj
+  lint:
+  
+      runs-on: ubuntu-latest
+      
+      steps: 
+        - name: Super-Linter
+          uses: super-linter/super-linter@v5.7.2
+          env: 
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            
+    
+    
