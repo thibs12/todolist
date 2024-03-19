@@ -8,7 +8,7 @@ function getItems () {
     .catch(error => console.error('Unable to get items.', error))
 }
 
-function addItem() { // eslint-disable-line no-unused-vars
+function addItem () { // eslint-disable-line no-unused-vars
   const addNameTextbox = document.getElementById('add-name')
 
   // Vérifier si le champ de texte est vide
@@ -37,7 +37,7 @@ function addItem() { // eslint-disable-line no-unused-vars
     .catch(error => console.error('Unable to add item.', error))
 }
 
-function deleteItem(id) { // eslint-disable-line no-unused-vars
+function deleteItem (id) { // eslint-disable-line no-unused-vars
   fetch(`${uri}/${id}`, {
     method: 'DELETE'
   })
@@ -45,7 +45,7 @@ function deleteItem(id) { // eslint-disable-line no-unused-vars
     .catch(error => console.error('Unable to delete item.', error))
 }
 
-function displayEditForm(id) { // eslint-disable-line no-unused-vars
+function displayEditForm (id) { // eslint-disable-line no-unused-vars
   const item = todos.find(item => item.id === id)
 
   document.getElementById('edit-name').value = item.name
@@ -54,7 +54,7 @@ function displayEditForm(id) { // eslint-disable-line no-unused-vars
   document.getElementById('edit-form').style.display = 'block'
 }
 
-function updateItem() { // eslint-disable-line no-unused-vars
+function updateItem () { // eslint-disable-line no-unused-vars
   const itemId = document.getElementById('edit-id').value
   const item = {
     id: parseInt(itemId, 10),
