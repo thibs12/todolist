@@ -6,7 +6,7 @@ button,
 }
 
 /* Hide edit form initially */
-#editForm {
+#edit-form {
     display: none;
 }
 
