@@ -36,6 +36,13 @@ jobs:
       runs-on: ubuntu-latest
       
       steps: 
+        - name: Cache linter
+          uses: actions/cache@v4
+          with:
+            path: /home/runner/.cache
+            key: ${{ runner.os }}-linter
+            restore-keys: |
+              ${{ runner.os }}-linter
         - name: Checkout code
           uses: actions/checkout@v4
           with:
