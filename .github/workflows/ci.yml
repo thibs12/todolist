@@ -36,7 +36,7 @@ jobs:
       runs-on: ubuntu-latest
       
       steps: 
-        - name: Cache linter
+        - name: Cache linter 
           uses: actions/cache@v4
           with:
             path: /home/runner/.cache
