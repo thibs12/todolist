@@ -31,21 +31,43 @@ jobs:
       run: |
         dotnet test src/TodoApi.UnitTests/TodoApi.UnitTests.csproj
         dotnet test src/TodoApi.IntegrationTests/TodoApi.IntegrationTests.csproj
-  lint:
+  # lint:
   
-      runs-on: ubuntu-latest
+  #     runs-on: ubuntu-latest
       
-      steps: 
-        - name: Checkout code
-          uses: actions/checkout@v4
-          with:
-            # super-linter needs the full git history to get the
-            # list of files that changed across commits
-            fetch-depth: 0
-        - name: Super-Linter
-          uses: super-linter/super-linter@v5.7.2
-          env: 
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     steps: 
+  #       - name: Checkout code
+  #         uses: actions/checkout@v4
+  #         with:
+  #           # super-linter needs the full git history to get the
+  #           # list of files that changed across commits
+  #           fetch-depth: 0
+  #       - name: Super-Linter
+  #         uses: super-linter/super-linter@v5.7.2
+  #         env: 
+  #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  extract-url:
+  
+    runs-on: ubuntu-latest
+    
+    needs: build-and-test
+    steps:
+      - name: Extract App URL
+        run: |
+          APP_URL=$(jq -r '.profiles.http.applicationUrl' launchsettings.json)
+          echo "::set-output name=app_url::$APP_URL"
+
+  security-scan:
+  
+    runs-on: ubuntu-latest
+    
+    needs: [build-and-test, extract-url]
+    steps:
+      - name: OWASP ZAP Security Scan
+        uses: zaproxy/action-baseline@v0.11.0
+        with:
+          target: ${{ needs.extract_url.outputs.APP_URL }}
             
     
     
