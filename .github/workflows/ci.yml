@@ -47,27 +47,27 @@ jobs:
   #         env: 
   #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  extract-url:
+  # extract-url:
   
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
     
-    needs: build-and-test
-    steps:
-      - name: Extract App URL
-        run: |
-          APP_URL=$(jq -r '.profiles.http.applicationUrl' src/TodoApi/Properties/launchSettings.json)
-          echo "::set-output name=app_url::$APP_URL"
+  #   needs: build-and-test
+  #   steps:
+  #     - name: Extract App URL
+  #       run: |
+  #         APP_URL=$(jq -r '.profiles.http.applicationUrl' src/TodoApi/Properties/launchSettings.json)
+  #         echo "::set-output name=app_url::$APP_URL"
 
   security-scan:
   
     runs-on: ubuntu-latest
     
-    needs: [build-and-test, extract-url]
+    needs: [build-and-test]  #, extract-url]
     steps:
       - name: OWASP ZAP Security Scan
         uses: zaproxy/action-baseline@v0.11.0
         with:
-          target: ${{ needs.extract_url.outputs.APP_URL }}
+          target: "http://localhost:5108"
             
     
     
