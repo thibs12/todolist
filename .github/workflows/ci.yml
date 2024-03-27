@@ -55,7 +55,7 @@ jobs:
     steps:
       - name: Extract App URL
         run: |
-          APP_URL=$(jq -r '.profiles.http.applicationUrl' ../../src/TodoApi/Properties/launchSettings.json)
+          APP_URL=$(jq -r '.profiles.http.applicationUrl' ../src/TodoApi/Properties/launchSettings.json)
           echo "::set-output name=app_url::$APP_URL"
 
   security-scan:
