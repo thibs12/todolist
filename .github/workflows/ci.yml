@@ -64,6 +64,8 @@ jobs:
     
     needs: [build-and-test]  #, extract-url]
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: OWASP ZAP Security Scan
         uses: zaproxy/action-baseline@v0.11.0
         with:
