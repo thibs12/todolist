@@ -59,13 +59,8 @@ jobs:
           sonarProjectName:  todolist
           # The name of the SonarQube organization in SonarCloud. For hosted SonarQube, skip this setting.
           sonarOrganization: thibs12
-          # Optional command arguments to dotnet build
-          dotnetBuildArguments: ./src/TodoApi/TodoApi.sln
-          # Optional command arguments to dotnet test
-          dotnetTestArguments: ./src/TodoApi.UnitTests/TodoApi.UnitTests.csproj --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-          # Optional extra command arguments the the SonarScanner 'begin' command
-          sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
-        
+          # Optional. Set to 1 or true to not run 'dotnet test' command
+          dotnetDisableTests: true
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
