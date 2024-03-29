@@ -58,7 +58,7 @@ jobs:
           # The name of the SonarQube project
           sonarProjectName:  todolist
           # The name of the SonarQube organization in SonarCloud. For hosted SonarQube, skip this setting.
-          sonarOrganization: thibs_12
+          sonarOrganization: thibs12
           # Optional command arguments to dotnet test
           dotnetTestArguments: ./src --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
           # Optional extra command arguments the the SonarScanner 'begin' command
