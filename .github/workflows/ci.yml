@@ -59,6 +59,8 @@ jobs:
           sonarProjectName:  todolist
           # The name of the SonarQube organization in SonarCloud. For hosted SonarQube, skip this setting.
           sonarOrganization: thibs12
+          # Optional command arguments to dotnet build
+          dotnetBuildArguments: src/TodoApi
           # Optional. Set to 1 or true to not run 'dotnet test' command
           dotnetDisableTests: true
     env:
