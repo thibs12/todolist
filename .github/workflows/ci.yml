@@ -31,24 +31,6 @@ jobs:
       run: |
         dotnet test src/TodoApi.UnitTests/TodoApi.UnitTests.csproj
         dotnet test src/TodoApi.IntegrationTests/TodoApi.IntegrationTests.csproj
-    - name: SonarScanner for .NET 8 with pull request decoration support
-      uses: highbyte/sonarscan-dotnet@v2.3.2
-      with:
-        # The key of the SonarQube project
-        sonarProjectKey: thibs12_todolist
-        # The name of the SonarQube project
-        sonarProjectName:  todolist
-        # The name of the SonarQube organization in SonarCloud. For hosted SonarQube, skip this setting.
-        sonarOrganization: thibs12
-        # Optional command arguments to dotnet build
-        dotnetBuildArguments: src/TodoApi/TodoApi.sln
-         # Optional command arguments to dotnet test
-        dotnetTestArguments: src/TodoApi/TodoApi.sln --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-        # Optional extra command arguments the the SonarScanner 'begin' command
-        sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
-    env:
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   lint:
       runs-on: ubuntu-latest
       steps: 
