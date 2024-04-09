@@ -2,7 +2,11 @@ using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
 using TodoApi.Services;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(
+    new WebApplicationOptions()
+    {
+        WebRootPath = "../wwwroot"
+    });
 
 // Add services to the container.
 
