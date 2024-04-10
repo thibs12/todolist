@@ -18,3 +18,5 @@ bld/
 .vscode/
 .vs/
 TodoApi.csproj.user
+
+out/
