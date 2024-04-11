@@ -53,7 +53,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Build an image from Dockerfile
         run: |
-          docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
+          docker build -t test .
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
