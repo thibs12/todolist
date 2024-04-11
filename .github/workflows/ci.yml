@@ -61,6 +61,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          file: ./src/TodoApi
+          context: ./src/TodoApi
+          file: ./src/TodoApi/Dockerfile
           push: true
           tags: todo
