@@ -64,4 +64,4 @@ jobs:
           context: ./src/TodoApi
           file: ./src/TodoApi/Dockerfile
           push: true
-          tags: todo
+          tags: thibs12/todolist:latest
