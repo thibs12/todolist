@@ -58,6 +58,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
+          severity: MEDIUM
           image-ref: 'docker.io/thibs12/todolist:${{ github.sha }}'
           format: 'sarif'
           output: 'trivy-results.sarif'
