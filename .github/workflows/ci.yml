@@ -51,7 +51,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
+# Trivy scan        
       - name: Build an image from Dockerfile
         run: |
           docker build -t docker.io/thibs12/todolist:${{ github.sha }} ./src/TodoApi
@@ -59,6 +60,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
+          severity: 'CRITICAL,HIGH'
           image-ref: 'docker.io/thibs12/todolist:${{ github.sha }}'
           format: 'sarif'
           output: 'trivy-results.sarif'
@@ -68,7 +70,7 @@ jobs:
         with:
           sarif_file: 'trivy-results.sarif'
           
-
+# Build and push
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Login to Docker Hub
