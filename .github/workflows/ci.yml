@@ -52,9 +52,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         
-      # - name: Build an image from Dockerfile
-      #   run: |
-      #     docker build -t docker.io/thibs12/todolist:${{ github.sha }} ./src/TodoApi
+      - name: Build an image from Dockerfile
+        run: |
+          docker build -t docker.io/thibs12/todolist:${{ github.sha }} ./src/TodoApi
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'docker.io/thibs12/todolist:${{ github.sha }}'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-results.sarif'
+          
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -71,16 +84,3 @@ jobs:
           file: ./src/TodoApi/Dockerfile
           push: true
           tags: thibs12/todolist:latest
-      
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          severity: MEDIUM
-          image-ref: 'thibs12/todolist:latest'
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: 'trivy-results.sarif'
