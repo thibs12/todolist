@@ -7,8 +7,18 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<TodoContext>(opt =>
-    opt.UseInMemoryDatabase("TodoList"));
+
+// Add db context for mysql database
+builder.Services.AddDbContextPool<TodoContext>(opt =>
+    opt.UseMySql(builder.Configuration.GetConnectionString("TodoContext"), new MySqlServerVersion(new Version()),
+           mySqlOptions => mySqlOptions.EnableRetryOnFailure()));
+
+// Add environment variable for database connection string
+builder.Configuration.AddEnvironmentVariables();
+
+/*builder.Services.AddDbContext<TodoContext>(opt =>
+    opt.UseInMemoryDatabase("TodoList"));*/
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -18,11 +18,12 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.1" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="TodoApi.IntegrationTests"/>
+		<InternalsVisibleTo Include="TodoApi.IntegrationTests" />
 	</ItemGroup>
 
 </Project>
