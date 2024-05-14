@@ -1,17 +1,13 @@
 version: '3'
-services:
-  todo-container:
-    image: thibs12/todolist:latest
-    ports:
-      - "5000:8080"
-    environment:
-      - DB_HOST=db
-    container_name: todo-container
-    depends_on:
-      - db
 
+volumes:
+  datafiles:
+
+services:
   db:
     image: mysql:latest
+    volumes:
+      - datafiles:/var/lib/mysql
     ports:
       - "3306:3306"
     environment:
@@ -20,4 +16,15 @@ services:
       MYSQL_USER: thibs
       MYSQL_PASSWORD: password
     container_name: server-sql
+  todo-container:
+    image: thibs/todolist:latest
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - "5000:8080"
+    environment:
+      - DBHOST=db
+      - ASPNETCORE_ENVIRONMENT=Development
+    container_name: todo-container
   
