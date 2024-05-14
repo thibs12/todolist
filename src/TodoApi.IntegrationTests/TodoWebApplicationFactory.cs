@@ -15,7 +15,7 @@ namespace TodoApi.IntegrationTests
             builder.ConfigureTestServices(services =>
             {
                 services.RemoveAll(typeof(DbContextOptions<TodoContext>));
-                services.AddDbContext<TodoContext>(options =>
+                services.AddDbContextFactory<TodoContext>(options =>
                 {
                     options.UseInMemoryDatabase("InMemoryDbForTesting");
                 });
