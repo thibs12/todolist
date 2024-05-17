@@ -39,7 +39,10 @@ namespace TodoApi
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            context.Database.Migrate();
+            if (context.Database.IsRelational())
+            {
+                context.Database.Migrate();
+            }
             app.UseRouting();
 
             app.UseHttpsRedirection();
