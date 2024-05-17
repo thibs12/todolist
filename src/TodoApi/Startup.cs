@@ -18,8 +18,8 @@ namespace TodoApi
             var port = Configuration["DBPORT"] ?? "3306";
             var password = Configuration["DBPASSWORD"] ?? "password";
 
-            services.AddDbContextPool<TodoContext>(options => 
-            options.UseMySql($"server={host};port={port};user=thibs;password={password};database=todolist;", 
+            services.AddDbContextPool<TodoContext>(options =>
+            options.UseMySql($"server={host};port={port};user=thibs;password={password};database=todolist;",
                 new MySqlServerVersion(new Version())));
             services.AddControllers();
 
@@ -52,7 +52,7 @@ namespace TodoApi
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern:"{controller=TodoItems}/{action=Index}/{id?}");
+                    pattern: "{controller=TodoItems}/{action=Index}/{id?}");
             });
         }
     }
