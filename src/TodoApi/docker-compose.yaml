@@ -17,7 +17,7 @@ services:
       MYSQL_PASSWORD: password
     container_name: server-sql
   todo-container:
-    image: thibs/todolist:latest
+    image: thibs12/todolist:latest
     depends_on:
       - db
     restart: always
