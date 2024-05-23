@@ -103,7 +103,7 @@ jobs:
           aws-region: eu-west-1
     
       - name: Force new deployment in ECS
-        if: github.event_name == 'pull_request'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'pull_request'
         env:
           CLUSTER_NAME: arn:aws:ecs:eu-west-1:891377364444:cluster/TL-ECS-cluster
           SERVICE_NAME: app-service
