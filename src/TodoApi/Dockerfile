@@ -21,7 +21,8 @@ COPY --from=build /app/out ./
 EXPOSE 8080
 
 # Installer curl
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update && apt-get install -y curl \
+    && apt-get clean
 
 # Start the application
 ENTRYPOINT ["dotnet", "TodoApi.dll"]
