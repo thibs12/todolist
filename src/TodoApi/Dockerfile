@@ -20,5 +20,8 @@ COPY --from=build /app/out ./
 # Expose the port your application will run on
 EXPOSE 8080
 
+# Installer curl
+RUN apt-get update && apt-get install -y curl
+
 # Start the application
 ENTRYPOINT ["dotnet", "TodoApi.dll"]
