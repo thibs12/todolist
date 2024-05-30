@@ -9,6 +9,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -86,3 +90,23 @@ jobs:
           file: ./src/TodoApi/Dockerfile
           push: true
           tags: thibs12/todolist:latest
+
+# Continuous Deployment - New deploy ECS
+  deploy:
+    runs-on: ubuntu-latest
+    needs: docker
+
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::891377364444:role/limited-github-access-ecs
+          aws-region: eu-west-1
+    
+      - name: Force new deployment in ECS
+        if: github.ref == 'refs/heads/main' && github.event_name == 'pull_request'
+        env:
+          CLUSTER_NAME: arn:aws:ecs:eu-west-1:891377364444:cluster/TL-ECS-cluster
+          SERVICE_NAME: app-service
+        run: |
+          aws ecs update-service --cluster "$CLUSTER_NAME" --service "$SERVICE_NAME" --force-new-deployment --region eu-west-1
