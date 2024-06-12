@@ -17,7 +17,18 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Notify Lambda on commit
+      if: github.event_name == 'push'
+      run: |
+          COMMIT_ID=$(git rev-parse HEAD)
+          COMMIT_TIME=$(git show -s --format=%ci $COMMIT_ID)
+          curl -X POST https://ih4ebnhsfe.execute-api.eu-west-1.amazonaws.com/prod/commit \
+            -H "Content-Type: application/json" \
+            -d "{\"commit_id\": \"$COMMIT_ID\", \"commit_time\": \"$COMMIT_TIME\"}"
+          
     - name: Cache NuGet packages
       uses: actions/cache@v2
       with:
