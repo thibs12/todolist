@@ -97,10 +97,10 @@ jobs:
           role-to-assume: arn:aws:iam::891377364444:role/limited-github-access-ecs
           aws-region: eu-west-1
     
-      - name: Force new deployment in ECS
-        if: github.event_name == 'push'
-        env:
-          CLUSTER_NAME: arn:aws:ecs:eu-west-1:891377364444:cluster/TL-ECS-cluster
-          SERVICE_NAME: app-service
-        run: |
-          aws ecs update-service --cluster "$CLUSTER_NAME" --service "$SERVICE_NAME" --force-new-deployment --region eu-west-1
+      # - name: Force new deployment in ECS
+      #   if: github.event_name == 'push'
+      #   env:
+      #     CLUSTER_NAME: arn:aws:ecs:eu-west-1:891377364444:cluster/TL-ECS-cluster
+      #     SERVICE_NAME: app-service
+      #   run: |
+      #     aws ecs update-service --cluster "$CLUSTER_NAME" --service "$SERVICE_NAME" --force-new-deployment --region eu-west-1
