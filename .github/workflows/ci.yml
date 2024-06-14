@@ -85,7 +85,7 @@ jobs:
           push: true
           tags: thibs12/todolist:latest
 
-# Continuous Deployment - New deployment on ECS
+# Continuous Deployment - New deploy ECS
   deploy:
     runs-on: ubuntu-latest
     needs: docker
