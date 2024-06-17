@@ -117,7 +117,7 @@ jobs:
         if: github.event_name == 'push'
         run: |
           COMMIT_ID=$(git rev-parse HEAD)
-          aws lambda invoke --function-name ECSDeploymentChecker \
+          aws lambda invoke --function-name TL-deployFunction \
             --payload "{\"commit_id\": \"$COMMIT_ID\"}" \
             response.json
           cat response.json
