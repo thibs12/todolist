@@ -117,7 +117,7 @@ jobs:
         if: github.event_name == 'push'
         run: |
           COMMIT_ID=$(git rev-parse HEAD)
-          PAYLOAD=$(echo "{\"commit_id\": \"$COMMIT_ID\"}" | jq -c .)
+          PAYLOAD=$(echo "{\"commit_id\": \"$COMMIT_ID\"}" | openssl base64)
           aws lambda invoke --function-name TL-deployFunction \
             --payload "$PAYLOAD" \
             response.json
