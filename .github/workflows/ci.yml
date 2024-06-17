@@ -19,9 +19,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    
-    - name: Checkout code
-      uses: actions/checkout@v4
 
     - name: Notify Lambda on commit
       if: github.event_name == 'push'
@@ -68,6 +65,9 @@ jobs:
     needs: [build-and-test,lint]
     
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
 # Build and push
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
