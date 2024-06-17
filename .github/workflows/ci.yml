@@ -109,7 +109,7 @@ jobs:
           aws ecs update-service --cluster "$CLUSTER_NAME" --service "$SERVICE_NAME" --force-new-deployment --region eu-west-1
 
       - name: Wait for tasks to start
-      - run: |
+        run: |
           echo "Waiting for tasks to start..."
           sleep 10
           
