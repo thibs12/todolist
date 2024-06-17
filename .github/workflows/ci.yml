@@ -117,7 +117,8 @@ jobs:
         if: github.event_name == 'push'
         run: |
           COMMIT_ID=$(git rev-parse HEAD)
+          PAYLOAD=$(echo "{\"commit_id\": \"$COMMIT_ID\"}" | jq -c .)
           aws lambda invoke --function-name TL-deployFunction \
-            --payload "{\"commit_id\": \"$COMMIT_ID\"}" \
+            --payload "$PAYLOAD" \
             response.json
           cat response.json
