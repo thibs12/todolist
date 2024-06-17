@@ -117,6 +117,7 @@ jobs:
         if: github.event_name == 'push'
         run: |
           COMMIT_ID=$(git rev-parse HEAD)
-          curl -X POST https://ih4ebnhsfe.execute-api.eu-west-1.amazonaws.com/prod/deploy \
-            -H "Content-Type: application/json" \
-            -d "{\"commit_id\": \"$COMMIT_ID\"}"
+          aws lambda invoke --function-name ECSDeploymentChecker \
+            --payload "{\"commit_id\": \"$COMMIT_ID\"}" \
+            response.json
+          cat response.json
