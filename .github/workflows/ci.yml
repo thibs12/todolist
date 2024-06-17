@@ -104,3 +104,11 @@ jobs:
           SERVICE_NAME: app-service
         run: |
           aws ecs update-service --cluster "$CLUSTER_NAME" --service "$SERVICE_NAME" --force-new-deployment --region eu-west-1
+
+      - name: Notify Lambda on deploy
+        if: github.event_name == 'push'
+        run: |
+          COMMIT_ID=$(git rev-parse HEAD)
+          curl -X POST https://ih4ebnhsfe.execute-api.eu-west-1.amazonaws.com/prod/deploy \
+            -H "Content-Type: application/json" \
+            -d "{\"commit_id\": \"$COMMIT_ID\"}"
