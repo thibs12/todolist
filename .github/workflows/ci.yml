@@ -113,7 +113,7 @@ jobs:
           echo "Waiting for tasks to start..."
           sleep 25
           
-      - name: Notify Lambda on deploy
+      - name: Invoke Lambda on deploy
         if: github.event_name == 'push'
         run: |
           COMMIT_ID=$(git rev-parse HEAD)
