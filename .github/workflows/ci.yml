@@ -100,7 +100,7 @@ jobs:
           role-to-assume: arn:aws:iam::891377364444:role/limited-github-access-ecs
           aws-region: eu-west-1
     
-      - name: Force new deployment on ECS
+      - name: Force new deploy ECS
         if: github.event_name == 'push'
         env:
           CLUSTER_NAME: arn:aws:ecs:eu-west-1:891377364444:cluster/TL-ECS-cluster
